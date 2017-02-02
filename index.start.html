@@ -15,37 +15,37 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
-                    <a ng-click="setCurrentCategory(null)"><img class="logo" src="assets/img/eggly-logo.png"></a>
+                    <a ng-click="setCurrentclub(null)"><img class="logo" src="assets/img/eggly-logo.png"></a>
                     <ul class="nav nav-sidebar">
-                        <li ng-repeat="category in categories" ng-class="{'active':isCurrentCategory(category)}">
-                            <a ng-click="setCurrentCategory(category)">
-                                {{category.name}}
+                        <li ng-repeat="club in clubs" ng-class="{'active':isCurrentclub(club)}">
+                            <a ng-click="setCurrentclub(club)">
+                                {{club.name}}
                             </a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                    <div ng-class="{active: isSelectedBookmark(bookmark.id)}"  ng-repeat="bookmark in bookmarks | filter:{category:currentCategory.name}">
+                    <div ng-class="{active: isSelectedmember(member.id)}"  ng-repeat="member in members | filter:{club:currentclub.name}">
                         <button type="button" class="close">&times;</button>
-                        <button type="button" class="btn btn-link" ng-click="setEditedBookmark(bookmark);startEditing();" ><span class="glyphicon glyphicon-pencil"></span>
+                        <button type="button" class="btn btn-link" ng-click="setEditedmember(member);startEditing();" ><span class="glyphicon glyphicon-pencil"></span>
                         </button>
-                        <a href="{{bookmark.url}}" target="_blank">{{bookmark.title}}</a>
+                        <a href="{{member.url}}" target="_blank">{{member.title}}</a>
                     </div>
                     <hr/>
                     <!-- CREATING -->
                     <div ng-if="shouldShowCreating()">
                         <button type="button" class="btn btn-link" ng-click="startCreating()">
                             <span class="glyphicon glyphicon-plus"></span>
-                            Create Bookmark
+                            Create member
                         </button>
-                        <form class="create-form" ng-show="isCreating" role="form" ng-submit="createBookmark(newBookmark)" novalidate>
+                        <form class="create-form" ng-show="isCreating" role="form" ng-submit="createmember(newmember)" novalidate>
                             <div class="form-group">
-                                <label for="newBookmarkTitle">Bookmark Title</label>
-                                <input type="text" class="form-control" id="newBookmarkTitle" ng-model="newBookmark.title" placeholder="Enter title">
+                                <label for="newmemberTitle">member Title</label>
+                                <input type="text" class="form-control" id="newmemberTitle" ng-model="newmember.title" placeholder="Enter title">
                             </div>
                             <div class="form-group">
-                                <label for="newBookmarkURL">Bookmark URL</label>
-                                <input type="text" class="form-control" id="newBookmarkURL" ng-model="newBookmark.url" placeholder="Enter URL">
+                                <label for="newmemberURL">member URL</label>
+                                <input type="text" class="form-control" id="newmemberURL" ng-model="newmember.url" placeholder="Enter URL">
                             </div>
                             <button type="submit" class="btn btn-info btn-lg">Create</button>
                             <button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelCreating()">Cancel</button>
@@ -53,16 +53,16 @@
                     </div>
                     <!-- EDITING -->
                     <div ng-show="shouldShowEditing()">
-                        <h4>Editing {{editedBookmark.title}}</h4>
+                        <h4>Editing {{editedmember.title}}</h4>
 
-                        <form class="edit-form" role="form" ng-submit="updateBookmark(editedBookmark)" novalidate>
+                        <form class="edit-form" role="form" ng-submit="updatemember(editedmember)" novalidate>
                             <div class="form-group">
-                                <label>Bookmark Title</label>
-                                <input type="text" class="form-control" ng-model="editedBookmark.title" placeholder="Enter title">
+                                <label>member Title</label>
+                                <input type="text" class="form-control" ng-model="editedmember.title" placeholder="Enter title">
                             </div>
                             <div class="form-group">
-                                <label>Bookmark URL</label>
-                                <input type="text" class="form-control" ng-model="editedBookmark.url" placeholder="Enter URL">
+                                <label>member URL</label>
+                                <input type="text" class="form-control" ng-model="editedmember.url" placeholder="Enter URL">
                             </div>
                             <button type="submit" class="btn btn-info btn-lg">Save</button>
                             <button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelEditing()">Cancel</button>

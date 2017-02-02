@@ -7,6 +7,7 @@
 
         <link rel="stylesheet" href="assets/css/normalize.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Rubik:700" rel="stylesheet">
 
         <link rel="stylesheet" href="assets/css/eggly.css">
         <link rel="stylesheet" href="assets/css/animations.css">
@@ -14,8 +15,8 @@
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-3 col-md-2 sidebar" ui-view="categories"></div>
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ui-view="bookmarks"></div>
+                <div class="col-sm-3 col-md-2 sidebar" ui-view="clubs"></div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ui-view="members"></div>
             </div>
         </div>
 
@@ -28,12 +29,12 @@
 
         <script src="vendor/angular-ui-router.min.js"></script>
         <script src="app/eggly-app.complete.js"></script>
-        <script src="app/categories/categories.js"></script>
-        <script src="app/categories/bookmarks/bookmarks.js"></script>
-        <script src="app/categories/bookmarks/edit/bookmarks-edit.js"></script>
-        <script src="app/categories/bookmarks/create/bookmarks-create.js"></script>
-        <script src="app/common/models/bookmarks-model.js"></script>
-        <script src="app/common/models/categories-model.js"></script>
+        <script src="app/clubs/clubs.js"></script>
+        <script src="app/clubs/members/members.js"></script>
+        <script src="app/clubs/members/edit/members-edit.js"></script>
+        <script src="app/clubs/members/create/members-create.js"></script>
+        <script src="app/common/models/members-model.js"></script>
+        <script src="app/common/models/clubs-model.js"></script>
 
     </body>
 </html>

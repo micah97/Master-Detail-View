@@ -1,0 +1,11 @@
+<!--<a href="#/"><img class="logo" src="assets/img/eggly-logo.png"></a>-->
+<div>
+    <a ui-sref="eggly.clubs.members({club: club.name})"><h1 class="location">Club Lo<span class="purple">cat</span>ions</h1></a>
+</div>
+<hr/>
+<ul class="nav nav-sidebar">
+    <li ng-repeat="club in clubs" ng-class="{'active':isCurrentclub(club)}">
+      <a ui-sref="eggly.clubs.members({club: club.name})">
+        {{club.name}}
+      </a></li>
+</ul>

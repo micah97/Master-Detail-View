@@ -1,8 +1,8 @@
 angular.module('Eggly', [
   'ngAnimate',
   'ui.router',
-  'categories',
-  'bookmarks'
+  'clubs',
+  'members'
 ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider

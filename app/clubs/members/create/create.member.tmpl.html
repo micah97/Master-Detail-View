@@ -1,0 +1,14 @@
+<div class="createmember">
+    <form class="create-form" ng-show="isCreating" role="form" ng-submit="createmember()" novalidate>
+        <div class="form-group">
+            <label for="newmembername">Name</label>
+            <input type="text" class="form-control" id="newmembername" ng-model="newmember.name" placeholder="Enter Name">
+        </div>
+        <div class="form-group">
+            <label for="newmemberclub">Club</label>
+            <input type="text" class="form-control" id="newmemberclub" ng-model="newmember.club" placeholder="Enter Club">
+        </div>
+        <button type="submit" class="btn btn-info btn-lg">Create</button>
+        <button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelCreating()">Cancel</button>
+    </form>
+</div>

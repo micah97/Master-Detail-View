@@ -2,98 +2,98 @@ angular.module('Eggly', [
 
 ])
   .controller('MainCtrl', function ($scope) {
-      $scope.categories = [
-          {"id": 0, "name": "Development"},
-          {"id": 1, "name": "Design"},
-          {"id": 2, "name": "Exercise"},
-          {"id": 3, "name": "Humor"}
+      $scope.clubs = [
+          {"id": 0, "name": "Phoenix"},
+          {"id": 1, "name": "Glendale"},
+          {"id": 2, "name": "Mesa"},
+          {"id": 3, "name": "Scottsdale"}
       ];
 
-      $scope.bookmarks = [
-          {"id": 0, "title": "AngularJS", "url": "http://angularjs.org", "category": "Development" },
-          {"id": 1, "title": "Egghead.io", "url": "http://angularjs.org", "category": "Development" },
-          {"id": 2, "title": "A List Apart", "url": "http://alistapart.com/", "category": "Design" },
-          {"id": 3, "title": "One Page Love", "url": "http://onepagelove.com/", "category": "Design" },
-          {"id": 4, "title": "MobilityWOD", "url": "http://www.mobilitywod.com/", "category": "Exercise" },
-          {"id": 5, "title": "Robb Wolf", "url": "http://robbwolf.com/", "category": "Exercise" },
-          {"id": 6, "title": "Senor Gif", "url": "http://memebase.cheezburger.com/senorgif", "category": "Humor" },
-          {"id": 7, "title": "Wimp", "url": "http://wimp.com", "category": "Humor" },
-          {"id": 8, "title": "Dump", "url": "http://dump.com", "category": "Humor" }
+      $scope.members = [
+          {"id": 0, "title": "AngularJS", "url": "http://angularjs.org", "club": "Phoenix" },
+          {"id": 1, "title": "Egghead.io", "url": "http://angularjs.org", "club": "Phoenix" },
+          {"id": 2, "title": "A List Apart", "url": "http://alistapart.com/", "club": "Glendale" },
+          {"id": 3, "title": "One Page Love", "url": "http://onepagelove.com/", "club": "Glendale" },
+          {"id": 4, "title": "MobilityWOD", "url": "http://www.mobilitywod.com/", "club": "Mesa" },
+          {"id": 5, "title": "Robb Wolf", "url": "http://robbwolf.com/", "club": "Mesa" },
+          {"id": 6, "title": "Senor Gif", "url": "http://memebase.cheezburger.com/senorgif", "club": "Scottsdale" },
+          {"id": 7, "title": "Wimp", "url": "http://wimp.com", "club": "Scottsdale" },
+          {"id": 8, "title": "Dump", "url": "http://dump.com", "club": "Scottsdale" }
       ];
 
       $scope.isCreating = false;
       $scope.isEditing = false;
-      $scope.currentCategory = null;
-      $scope.editedBookmark = null;
+      $scope.currentclub = null;
+      $scope.editedmember = null;
 
-      function isCurrentCategory(category) {
-          return $scope.currentCategory !== null && category.name === $scope.currentCategory.name;
+      function isCurrentclub(club) {
+          return $scope.currentclub !== null && club.name === $scope.currentclub.name;
       }
 
-      function setCurrentCategory(category) {
-          $scope.currentCategory = category;
+      function setCurrentclub(club) {
+          $scope.currentclub = club;
 
           cancelCreating();
           cancelEditing();
       }
 
-      $scope.isCurrentCategory = isCurrentCategory;
-      $scope.setCurrentCategory = setCurrentCategory;
+      $scope.isCurrentclub = isCurrentclub;
+      $scope.setCurrentclub = setCurrentclub;
 
-      function setEditedBookmark(bookmark) {
-          $scope.editedBookmark = angular.copy(bookmark);
+      function setEditedmember(member) {
+          $scope.editedmember = angular.copy(member);
       }
 
-      function isSelectedBookmark(bookmarkId) {
-          return $scope.editedBookmark !== null && $scope.editedBookmark.id === bookmarkId;
+      function isSelectedmember(memberId) {
+          return $scope.editedmember !== null && $scope.editedmember.id === memberId;
       }
 
-      $scope.setEditedBookmark = setEditedBookmark;
-      $scope.isSelectedBookmark = isSelectedBookmark;
+      $scope.setEditedmember = setEditedmember;
+      $scope.isSelectedmember = isSelectedmember;
 
       function resetCreateForm() {
-          $scope.newBookmark = {
+          $scope.newmember = {
               title: '',
               url: '',
-              category: $scope.currentCategory.name
+              club: $scope.currentclub.name
           };
       }
 
       //-------------------------------------------------------------------------------------------------
       // CRUD
       //-------------------------------------------------------------------------------------------------
-      function createBookmark(bookmark) {
-          bookmark.id = $scope.bookmarks.length;
-          $scope.bookmarks.push(bookmark);
+      function createmember(member) {
+          member.id = $scope.members.length;
+          $scope.members.push(member);
 
           resetCreateForm();
       }
 
-      function updateBookmark(bookmark) {
-          var index = _.findIndex($scope.bookmarks, function (b) {
-              return b.id == bookmark.id
+      function updatemember(member) {
+          var index = _.findIndex($scope.members, function (b) {
+              return b.id == member.id
           });
-          $scope.bookmarks[index] = bookmark;
+          $scope.members[index] = member;
 
-          $scope.editedBookmark = null;
+          $scope.editedmember = null;
           $scope.isEditing = false;
       }
 
-      function deleteBookmark(bookmark) {
-          _.remove($scope.bookmarks, function (b) {
-              return b.id == bookmark.id;
+      function deletemember(member) {
+          _.remove($scope.members, function (b) {
+              return b.id == member.id;
           });
       }
 
-      $scope.createBookmark = createBookmark;
-      $scope.updateBookmark = updateBookmark;
-      $scope.deleteBookmark = deleteBookmark;
+      $scope.createmember = createmember;
+      $scope.updatemember = updatemember;
+      $scope.deletemember = deletemember;
 
       //-------------------------------------------------------------------------------------------------
       // CREATING AND EDITING STATES
       //-------------------------------------------------------------------------------------------------
       function shouldShowCreating() {
-          return $scope.currentCategory && !$scope.isEditing;
+          return $scope.currentclub && !$scope.isEditing;
       }
 
       function startCreating() {
@@ -121,7 +121,7 @@ angular.module('Eggly', [
 
       function cancelEditing() {
           $scope.isEditing = false;
-          $scope.editedBookmark = null;
+          $scope.editedmember = null;
       }
 
       $scope.startEditing = startEditing;

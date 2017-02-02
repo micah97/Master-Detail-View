@@ -1,0 +1,38 @@
+<div>
+  <input class="search" type="text" placeholder="Search" ng-model="q" size="40" height="30">
+</div>
+<ui-view>
+  <div ng-if="getCurrentclub()">
+    <hr/>
+    <button type="button" class="btn btn-link"
+            ui-sref="eggly.clubs.members.create({club:getCurrentclubName()})"><span
+            class="glyphicon glyphicon-plus"></span>
+      Create member
+    </button>
+  </div>
+</ui-view>
+<hr/>
+
+  <table class="table table-hover">
+    <thead><tr>
+      <th width="20"></th>
+      <th><h3>Name</h3></th>
+      <th><h3>Location</h3></th>
+      <!--<div ui-sref-active="editing" member="member" ng-class="{active: isSelectedmember(member.id)}"  ng-repeat="member in members | filter:{club:getCurrentclubName() } | filter:q"></div>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr ui-sref-active="editing" member="member" ng-class="{active: isSelectedmember(member.id)}"  ng-repeat="member in members | filter:{club:getCurrentclubName() } | filter:q">
+      <td valign="middle"><button type="button" class="btn btn-link" ui-sref="eggly.clubs.members.edit({club:member.club, memberId:member.id})"><span class="glyphicon glyphicon-pencil"></span></button></td>
+      <td valign="middle">{{member.name}}</td>
+      <td valign="middle">{{member.club}}</td>
+      <td><button type="button" class="close" ng-click="deletemember(member)">&times;</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
