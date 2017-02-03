@@ -3,7 +3,7 @@ angular.module('eggly.models.members', [
 ])
   .service('members', function membersService($http, $q) {
     var URLS = {
-        FETCH: 'data/members.json'
+        FETCH: 'http://localhost:3000/members'
       },
       members,
       membersModel = this;
@@ -40,21 +40,30 @@ angular.module('eggly.models.members', [
     };
 
     membersModel.createmember = function (member) {
-      member.id = members.length;
-      members.push(member);
+        // member.id = members.length;
+        return $http.post(URLS.FETCH, member).then(function (mem){
+            console.log(mem)
+            members.push(mem.data);
+        });
     };
 
     membersModel.updatemember = function (member) {
-      var index = _.findIndex(members, function (b) {
-        return b.id == member.id
-      });
-      members[index] = member;
+        var url = URLS.FETCH + "/" + member.id
+        return $http.put(url, member).then(function () {
+            var index = _.findIndex(members, function (b) {
+                return b.id == member.id
+            });
+            members[index] = member;
+        })
     };
 
+
     membersModel.deletemember = function (member) {
-      _.remove(members, function (b) {
-        return b.id == member.id;
-      });
+        return $http.delete(URLS.FETCH + "/" + member.id).then(function (){
+            _.remove(members, function (b) {
+                return b.id == member.id;
+            });
+        })
     };
 
     membersModel.getmembersForclub = function (club) {
@@ -62,5 +71,4 @@ angular.module('eggly.models.members', [
         return b.club == club;
       });
     };
-  })
-;
+  });

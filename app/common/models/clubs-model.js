@@ -3,7 +3,7 @@ angular.module('eggly.models.clubs', [
 ])
   .service('clubs', function clubsService($http, $q) {
     var URLS = {
-        FETCH: 'data/clubs.json'
+        FETCH: 'http://localhost:3000/clubs'
       },
       clubs,
       currentclub,
